@@ -1,0 +1,68 @@
+# server config
+server:
+  port: ${SERVER_PORT}
+
+# spring config
+spring:
+  application:
+    name: ${APPLICATION_NAME}
+
+  # gateway config
+  cloud:
+    gateway:
+      # route config
+      routes:
+        - id: ${AUTH_COMMAND_SERVICE_ID}
+          uri: ${AUTH_COMMAND_SERVICE_URI}
+          predicates:
+            - Method=${AUTH_COMMAND_SERVICE_METHOD}
+            - Path=${AUTH_COMMAND_SERVICE_PATH}
+        - id: ${AUTH_QUERY_SERVICE_ID}
+          uri: ${AUTH_QUERY_SERVICE_URI}
+          predicates:
+            - Method=${AUTH_QUERY_SERVICE_METHOD}
+            - Path=${AUTH_QUERY_SERVICE_PATH}
+        - id: ${BUILDING_COMMAND_SERVICE_ID}
+          uri: ${BUILDING_COMMAND_SERVICE_URI}
+          predicates:
+            - Method=${BUILDING_COMMAND_SERVICE_METHOD}
+            - Path=${BUILDING_COMMAND_SERVICE_PATH}
+        - id: ${BUILDING_QUERY_SERVICE_ID}
+          uri: ${BUILDING_QUERY_SERVICE_URI}
+          predicates:
+            - Method=${BUILDING_QUERY_SERVICE_METHOD}
+            - Path=${BUILDING_QUERY_SERVICE_PATH}
+        - id: ${HUMAN_COMMAND_SERVICE_ID}
+          uri: ${HUMAN_COMMAND_SERVICE_URI}
+          predicates:
+            - Method=${HUMAN_COMMAND_SERVICE_METHOD}
+            - Path=${HUMAN_COMMAND_SERVICE_PATH}
+        - id: ${HUMAN_QUERY_SERVICE_ID}
+          uri: ${HUMAN_QUERY_SERVICE_URI}
+          predicates:
+            - Method=${HUMAN_QUERY_SERVICE_METHOD}
+            - Path=${HUMAN_QUERY_SERVICE_PATH}
+        - id: ${PAYMENT_COMMAND_SERVICE_ID}
+          uri: ${PAYMENT_COMMAND_SERVICE_URI}
+          predicates:
+            - Method=${PAYMENT_COMMAND_SERVICE_METHOD}
+            - Path=${PAYMENT_COMMAND_SERVICE_PATH}
+        - id: ${PAYMENT_QUERY_SERVICE_ID}
+          uri: ${PAYMENT_QUERY_SERVICE_URI}
+          predicates:
+            - Method=${PAYMENT_QUERY_SERVICE_METHOD}
+            - Path=${PAYMENT_QUERY_SERVICE_PATH}
+        - id: ${ACTIVITY_COMMAND_SERVICE_ID}
+          uri: ${ACTIVITY_COMMAND_SERVICE_URI}
+          predicates:
+            - Method=${ACTIVITY_COMMAND_SERVICE_METHOD}
+            - Path=${ACTIVITY_COMMAND_SERVICE_PATH}
+        - id: ${ACTIVITY_QUERY_SERVICE_ID}
+          uri: ${ACTIVITY_QUERY_SERVICE_URI}
+          predicates:
+            - Method=${ACTIVITY_QUERY_SERVICE_METHOD}
+            - Path=${ACTIVITY_QUERY_SERVICE_PATH}
+
+# cors config
+cors:
+  domain: ${CORS_DOMAIN}

@@ -1,0 +1,80 @@
+# server config
+server:
+  port: ${SERVER_PORT:8080}
+
+# spring config
+spring:
+  application:
+    name: ${APPLICATION_NAME:API-GATEWAY}
+
+  # gateway config
+  cloud:
+    gateway:
+      # route config
+      routes:
+        # Auth group service
+        - id: ${AUTH_COMMAND_SERVICE_ID:7fb1eb656c67a714e53976eda9ffb32a2022c03129f87425419cbe83521e643a}
+          uri: ${AUTH_COMMAND_SERVICE_URI:http://localhost:8081/}
+          predicates:
+            - Method=${AUTH_COMMAND_SERVICE_METHOD:POST,PUT,DELETE}
+            - Path=${AUTH_COMMAND_SERVICE_PATH:/auth/command/api/**}
+        - id: ${AUTH_QUERY_SERVICE_ID:2f9cd22b217c655c48e732727a91aa7802e65697a4f784095b33229f687e309a}
+          uri: ${AUTH_QUERY_SERVICE_URI:http://localhost:8083/}
+          predicates:
+            - Method=${AUTH_QUERY_SERVICE_METHOD:GET,POST}
+            - Path=${AUTH_QUERY_SERVICE_PATH:/auth/query/api/**}
+
+          # Building group service
+        - id: ${BUILDING_COMMAND_SERVICE_ID:c58db4c5f8227a905dd449f5d28a1957bd6130367435f18b05519999e7803bc5}
+          uri: ${BUILDING_COMMAND_SERVICE_URI:http://localhost:8091/}
+          predicates:
+            - Method=${BUILDING_COMMAND_SERVICE_METHOD:POST,PUT,DELETE}
+            - Path=${BUILDING_COMMAND_SERVICE_PATH:/building/command/api/**}
+        - id: ${BUILDING_QUERY_SERVICE_ID:dfed0fadd823c08231dee9c8830f0433073937294a85d842e119557c52f8115a}
+          uri: ${BUILDING_QUERY_SERVICE_URI:http://localhost:8093/}
+          predicates:
+            - Method=${BUILDING_QUERY_SERVICE_METHOD:GET}
+            - Path=${BUILDING_QUERY_SERVICE_PATH:/building/query/api/**}
+
+          # Human group service
+        - id: ${HUMAN_COMMAND_SERVICE_ID:f5ff7413e3d531cf92da5f12505aa8ad309a7dc0e3fb6041d57734c5cc5c6c2a}
+          uri: ${HUMAN_COMMAND_SERVICE_URI:http://localhost:8101/}
+          predicates:
+            - Method=${HUMAN_COMMAND_SERVICE_METHOD:POST,PUT,DELETE}
+            - Path=${HUMAN_COMMAND_SERVICE_PATH:/human/command/api/**}
+        - id: ${HUMAN_QUERY_SERVICE_ID:b5b334aab809666a5b1f9b5d6ad19118d7f975002365a1cc839e3a4bf4a2552d}
+          uri: ${HUMAN_QUERY_SERVICE_URI:http://localhost:8103/}
+          predicates:
+            - Method=${HUMAN_QUERY_SERVICE_METHOD:GET}
+            - Path=${HUMAN_QUERY_SERVICE_PATH:/human/query/api/**}
+
+          # Payment group service
+        - id: ${PAYMENT_COMMAND_SERVICE_ID:0357e529af170e9b9a2cadefae81c557584f467d180fbc31581a3542612b224c}
+          uri: ${PAYMENT_COMMAND_SERVICE_URI:http://localhost:8111/}
+          predicates:
+            - Method=${PAYMENT_COMMAND_SERVICE_METHOD:POST,PUT,DELETE,GET}
+            - Path=${PAYMENT_COMMAND_SERVICE_PATH:/payment/command/api/**}
+        - id: ${PAYMENT_QUERY_SERVICE_ID:a7ec59adf90532f3ccd62cb820478ded4a866668f7a3e8b0d1b373a745ea45aa}
+          uri: ${PAYMENT_QUERY_SERVICE_URI:http://localhost:8113/}
+          predicates:
+            - Method=${PAYMENT_QUERY_SERVICE_METHOD:GET}
+            - Path=${PAYMENT_QUERY_SERVICE_PATH:/payment/query/api/**}
+
+          # Activity group service
+        - id: ${ACTIVITY_COMMAND_SERVICE_ID:bc4d8b7edec8b8d89580ee0fbc008e2ee85c57bf2d099927207b3a3e8af0e044}
+          uri: ${ACTIVITY_COMMAND_SERVICE_URI:http://localhost:8121/}
+          predicates:
+            - Method=${ACTIVITY_COMMAND_SERVICE_METHOD:POST,PUT,DELETE}
+            - Path=${ACTIVITY_COMMAND_SERVICE_PATH:/activity/command/api/**}
+        - id: ${ACTIVITY_QUERY_SERVICE_ID:f9bf853171cb57189fd4b67dba9dbf788c35996918b28a27026be25beb2a904c}
+          uri: ${ACTIVITY_QUERY_SERVICE_URI:http://localhost:8123/}
+          predicates:
+            - Method=${ACTIVITY_QUERY_SERVICE_METHOD:GET}
+            - Path=${ACTIVITY_QUERY_SERVICE_PATH:/activity/query/api/**}
+
+cors:
+  domain: ${CORS_DOMAIN:http://localhost:3000}
+
+logging:
+  level:
+    root: trace
