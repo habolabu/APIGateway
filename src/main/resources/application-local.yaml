@@ -75,6 +75,3 @@ spring:
 cors:
   domain: ${CORS_DOMAIN:http://localhost:3000}
 
-logging:
-  level:
-    root: trace
