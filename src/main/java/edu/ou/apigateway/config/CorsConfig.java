@@ -21,6 +21,9 @@ public class CorsConfig implements WebFluxConfigurer {
         corsConfiguration.setAllowedOrigins(List.of(domain));
         corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         corsConfiguration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type", "Refresh-Token"));
+        corsConfiguration.setExposedHeaders(List.of("Access-Control-Allow-Headers", "Authorization, x-xsrf-token, " +
+                "Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, " +
+                "Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Set-Cookie"));
         corsConfiguration.setAllowCredentials(true);
 
         final UrlBasedCorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource();
